@@ -2,12 +2,12 @@
 # This script complements the completion script that ships with git.
 
 # If there is no git tab completion, but we have the _completion loader try to load it
-if ! declare -F _git > /dev/null && declare -F _completion_loader > /dev/null; then
+if ! declare -F __git > /dev/null && declare -F _completion_loader > /dev/null; then
   _completion_loader git
 fi
 
 # Check that git tab completion is available and we haven't already set up completion
-if declare -F _git > /dev/null && ! declare -F __git_list_all_commands_without_hub > /dev/null; then
+if declare -F __git > /dev/null && ! declare -F __git_list_all_commands_without_hub > /dev/null; then
   # Duplicate and rename the 'list_all_commands' function
   eval "$(declare -f __git_list_all_commands | \
         sed 's/__git_list_all_commands/__git_list_all_commands_without_hub/')"
